@@ -80,6 +80,10 @@ window.app = function() {
 				if( !page.isCompletePage ) {
 					page.requestCompletePage().done( function() {
 						console.log("Full page retreived!");
+						if( preferencesDB.get("savePageAuto") == 'ON') {
+						    console.log( 'auto saving page');
+						    savedPages.saveCurrectPage( {silent: false});
+						}
 					});
 				}
 				d.resolve(page);
@@ -137,6 +141,10 @@ window.app = function() {
 	function setFontSize(size) {
 		preferencesDB.set('fontSize', size);
 		$('#main').css('font-size', size);
+	}
+
+	function setSavePageAuto( onOffVal) {
+	    preferencesDB.set( 'savePageAuto', onOffVal);
 	}
 
 	var curTheme = null;
@@ -253,6 +261,7 @@ window.app = function() {
 	var exports = {
 		setFontSize: setFontSize,
 		setTheme: setTheme,
+		setSavePageAuto: setSavePageAuto,
 		setContentLanguage: setContentLanguage,
 		navigateToPage: navigateToPage,
 		getCurrentUrl: getCurrentUrl,

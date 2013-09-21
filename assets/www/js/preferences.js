@@ -29,7 +29,8 @@ window.preferencesDB = {
 			this.uiLanguage = l10n.normalizeLanguageCode(preferencesDB.get('locale').replace(/-.*?$/, ''));
 			success();
 		},
-		'theme': 'light'
+		'theme': 'light',
+		'savePageAuto': 'OFF'
 	},
 	// Ordering of default initializer functions to call
 	defaultFunctions: [

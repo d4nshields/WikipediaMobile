@@ -2,6 +2,7 @@ window.appSettings = function() {
 	var fontSizes = [];	
 	var locales = [];
 	var themes = [];
+	var onOffVals = [];
 
 	function showSettings(callback) {
 		chrome.showSpinner();
@@ -14,6 +15,13 @@ window.appSettings = function() {
 				{ value: '200%' },
 				{ value: '300%' }
 			];
+		}
+
+		if( onOffVals.length === 0) {
+		    onOffVals = [
+		        { value: 'OFF'}.
+		        { value: 'ON'}
+		    ];
 		}
 
 		if( themes.length === 0 ) {
@@ -53,6 +61,7 @@ window.appSettings = function() {
 			languages: locales,
 			fontSizes: fontSizes,
 			themes: themes,
+			onOffVals: onOffVals,
 			aboutPage: aboutPage
 		} ) );
 
@@ -68,6 +77,8 @@ window.appSettings = function() {
 		});
 		$("#fontSizeSelector").val(preferencesDB.get("fontSize")).change(onFontSizeChanged);
 		$( "#themeSelector" ).val( preferencesDB.get( "theme" ) ).change( onThemeChanged );
+		$("#savePageAutoSelector").val( preferencesDB.get( "savePageAuto")).change( onSavePageAutoChanged);
+
 		$("#aboutPageLabel").click(function () {
 			aboutPage();
 		});
@@ -103,6 +114,12 @@ window.appSettings = function() {
 		var selectedTheme = $( this ).val();
 		app.setTheme( selectedTheme );
 		chrome.showContent();
+	}
+
+	function onSavePageAutoChanged() {
+	    var onOffVal = $(this).val();
+	    app.setSavePageAuto( onOffVal);
+	    chrome.showContent();
 	}
 
 	return {

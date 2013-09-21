@@ -106,6 +106,14 @@
 					{{/fontSizes}}
 				</select>
 			</div>
+            <div class="item">
+                <label for=""savePageAutoSelector"><msg key=""settings-savepage-auto-label"></msg></label>
+                <select id=""savePageAutoSelector">
+                   {{#onOffVals}}
+                   <option value="{{value}}">{{value}}</option>
+                   {{/onOffVals}}
+                </select>
+            </div>
 
 			<div id="aboutPageLabel" class="item">
 				<label><msg key="about-page-label"></msg></label>
