@@ -19,7 +19,7 @@ window.appSettings = function() {
 
 		if( onOffVals.length === 0) {
 		    onOffVals = [
-		        { value: 'OFF'}.
+		        { value: 'OFF'},
 		        { value: 'ON'}
 		    ];
 		}

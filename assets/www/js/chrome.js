@@ -63,7 +63,8 @@ window.chrome = function() {
 
 		chrome.initContentLinkHandlers( $( "#main" ) );
 		scrubInlineStyles( $( "#main" ) );
-		mw.mobileFrontend.references.init($("#main")[0], false, {animation: 'none', onClickReference: onClickReference});
+		if( "undefined" !== typeof mw.mobileFrontend.references)
+		    mw.mobileFrontend.references.init($("#main")[0], false, {animation: 'none', onClickReference: onClickReference});
 		handleSectionExpansion();
 	}
 
@@ -442,8 +443,8 @@ window.chrome = function() {
 		scrollTo: scrollTo,
 		populateSection: populateSection,
 		initContentLinkHandlers: initContentLinkHandlers,
-		showHeader: null, // initialized inside handleHeaderTimeout
-		hideHeader: null,  // initialized inside handleHeaderTimeout
+		showHeader: function() {}, // initialized inside handleHeaderTimeout; does nothing if called before initialized
+		hideHeader: function() {},  // initialized inside handleHeaderTimeout; does nothing if called before initialized
 		loadCSS: loadCSS
 	};
 }();
